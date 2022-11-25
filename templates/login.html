@@ -1,0 +1,96 @@
+{% extends "/layout/log.html" %}
+{# If login #}
+
+
+{% block log %}
+<section class="" style="background-color: #508bfc; position: relative;">
+    <div class="container py-5 h-100" style="position:relative;">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        {% if mode == "login"%}
+                            {% set title = "Login" %}
+                            {% set mode = "Login" %}
+                            {% set reverseMode = "Register" %}
+
+                            <h3 class="mb-5">{{ mode }}</h3>
+                            <form action="/login" method="post">
+                                <label class="form-label" for="email">Email</label>
+                                <input type="text" id="email" name="email" class="form-control " />
+                                <label class="form-label" for="pass">Password</label>
+                                <input type="password" id="pass" name="pass" class="form-control " />
+                                <br>
+                                <button class="btn btn-primary btn-lg btn-block" type="submit">{{mode}}</button>
+                                {# <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" required></div> #}
+                            </form>
+                            <hr class="my-4">
+                            <div class="text-center mb-6">
+                                Not a member? <a href="/{{ reverseMode|lower }}">{{ reverseMode }}</a>
+                            </div>
+                        {% elseif mode == "register" %}
+                        {% set title = "Register" %}
+                        {% set mode = "Register" %}
+                        {% set reverseMode = "Login" %}
+                        <h3 class="mb-5">{{ mode }}</h3>
+                        <form action="/register" method="post">
+                            <label class="form-label" for="nameF">First Name</label>
+                            <input type="text" id="nameF" name="firstName" class="form-control " required />
+
+                            <label class="form-label" for="nameL">Last Name</label>
+                            <input type="text" id="name L" name="lastName" class="form-control " required />
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="example@example.com" required />
+                            <label class="form-label" for="typePasswordX-2">Password</label>
+                            <input type="password" id="typePasswordX-2" name="pass" class="form-control " required />
+                            <br>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit">{{mode}}</button>
+                        </form>
+                        <hr class="my-4">
+                        <div class="text-center mb-6">
+                            Not a member? <a href="/{{ reverseMode|lower }}">{{ reverseMode }}</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    {% include "footer.html" %}
+    {% block footer %}
+
+    {% endblock %}
+</section>
+
+{% if notValidate == true %}
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Not Validate',
+        text: 'Email or Password is not validate',
+    })
+</script>
+{% elseif hasData == true %}
+    <script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Exist',
+        text: 'Email Already Exist',
+        footer: '<a href="/login">Maybe you have an account? Login</a>'
+    })
+    </script>
+{% elseif hasRegistered == true %}
+<script>
+    var id = {{ idReg|json_encode()|raw }}
+    Swal.fire({
+        icon: 'success',
+        title: 'Success adding',
+        text: 'Success adding '+id,
+    })
+</script>
+
+{% endif %}
+
+{% endblock log %}

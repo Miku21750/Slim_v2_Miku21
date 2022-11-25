@@ -1,0 +1,47 @@
+{% block edit %}
+{# Edit Modal #}
+<div class="modal fade" id="insert" tabindex="-1" aria-labelledby="insertLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="judul">Tambah Data</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <form action="" method="post" id="insertForm"  data-bs-whatever = "asu">
+      <div class="modal-body">
+          <div class="row g-3 mb-2 align-items-center">
+            <div class="col-3">
+              <label for="recipient-name" class="col-form-label">Name</label>
+            </div>
+            <div class="col-1">
+              <label for="recipient-name" class="col-form-label">:</label>
+            </div>
+            <div class="col-8">
+              <input type="text" class="form-control" id="insert_name">
+            </div>
+          </div>
+          <div class="row g-3 mb-2 align-items-center">
+            <div class="col-3">
+              <label for="recipient-name" class="col-form-label">Number</label>
+            </div>
+            <div class="col-1">
+              <label for="recipient-name" class="col-form-label">:</label>
+            </div>
+            <div class="col-8">
+              <input type="text" class="form-control" id="insert_number">
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        {# <button class="btn btn-warning" type="submit">Edit</button> #}
+        <input type="submit" value="Save" id="insertConfirm" class="btn btn-primary">
+      </div>
+      
+    </form>
+    </div>
+  </div>
+</div>
+  
+{% endblock %}

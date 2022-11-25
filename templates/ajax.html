@@ -1,0 +1,38 @@
+{% block ajax %}
+<script>
+    $(document).ready(function(){
+        TableShow = function(){
+            table = $('#demo').on('preXhr.dt', function(e, settings, data){
+                // Loading
+            })
+            .on('draw.dt', function(){
+                // Finish reload 
+            })
+            .DataTable({
+                "columnDefs":[
+                {width:"1%","targets":0, className:"text-end", "orderAble":false},
+                {width:"30%","targets":0, className:"text-end", "orderAble":false},
+                {width:"30%","targets":0, className:"text-end", "orderAble":false},
+                {width:"30%","targets":0, className:"text-end", "orderAble":false},
+                ],
+                "pageLength": 5,
+                "processing": true,
+                "serverSide": true,
+                "serverMethod": "GET",
+                "ajax":{
+                    'url':"/select",
+                    'dataType': 'json',
+                    'type': 'GET'
+                },
+                'columns':[
+                    {'data' : '#'},
+                    {'data' : 'Fullname'},
+                    {'data' : 'Number'},
+                    {'data' : 'Action'},
+                ]
+            })
+        }
+        TableShow();
+    })
+</script>
+{% endblock ajax %}

@@ -1,0 +1,18 @@
+{% block edit_js %}
+const editTitle = edit.querySelector('#judul')
+const idcust = edit.querySelector('#id_bots')
+const editName = edit.querySelector('#edit_name')
+const editNumber = edit.querySelector('#edit_number')
+
+editTitle.textContent = 'Data User'
+{# console.log("AAAAA" + response[0]) #}
+editTitle.textContent = `Data User ${response[0].name}`
+{# console.log(response) #}
+idcust.value = response[0].id_bots
+editName.value = response[0].name
+editNumber.value = response[0].number
+
+{# agent select #}
+{# var select = document.getElementById('cust_agent'); #}
+{# console.log({{ agent|json_encode|raw }}) #}
+{% endblock edit_js %}

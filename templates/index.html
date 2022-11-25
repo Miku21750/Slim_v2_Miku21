@@ -1,0 +1,257 @@
+{% extends "/layout/index.html" %}
+{% set title = "Landing Page" %}
+{% block content %}
+ <!-- Header -->
+ <div style="position: relative;">
+    <header class="text-center bg-img text-white py-5 mt-5"  id="indexHead">
+        <!-- <h1 class="display-1 font-weight-bolder head-anim">Miku21</h1> -->
+        <h1 class="font-weight-bolder head-anim">Selamat datang {{name}} di Miku21Bot</h1>
+        <p class="text-head"><strong> Bot multifungsi yang berbeda dari sebelumnya</strong></p>
+    </header>
+    <!-- section judul -->
+    <section class="py-5">
+        <div class="container px-5 bg-light">
+            <div class="row gx-5 align-items-center ">
+                <div class="col-lg-6">
+                    <!-- Mashead text and app badges-->
+                    <div class="mb-5 mb-lg-0 text-center text-lg-start">
+                        <h1 class="display-2 lh-1 mb-3">Bot Whatsapp MD</h1>
+                        <p class="lead fw-normal text-muted mb-5">Bot Whatsapp dengan fitur berbeda daripada sebelumnya </p>
+                        <div class=" align-items-center">
+                            <a class="me-lg-3 mb-4 mb-lg-0" href="https://api.whatsapp.com/send?phone=6283834685418">Chat the bot now! </br> <img class="app-badge" src="img/wa.svg" alt="Whatsapp"  style="width: 300px; max-height: 45px;"/></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <!-- Masthead device mockup feature
+                    <div class="masthead-device-mockup">
+                        <svg class="circle" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="circleGradient" gradientTransform="rotate(45)">
+                                    <stop class="gradient-start-color" offset="0%"></stop>
+                                    <stop class="gradient-end-color" offset="100%"></stop>
+                                </linearGradient>
+                            </defs> -->
+                        <div class="device-wrapper">
+                            <img src="https://i.gifer.com/Z23a.gif" alt="Miku Gif" class="gif-miku">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    <!-- carding -->
+    <section class="py-5" id="fitur">
+        <div class="container px-5 ">
+            <h1 class="display-1 text-center font-weight-bolder">Fitur</h1>
+            <div class="row align-items-center">
+                <div class="col-12 col-md-3">
+                    <div class="card border rounded-1 border-700 h-100 features-items">
+                        <img src="img/bot2.jpg" alt="Buat Stiker">
+                    </div>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="container">
+                        <h2 class="display-3">Pembuat Stiker</h2>
+                        <p>Pembuatan stiker dengan bot. Cukup kirim gambar dengan caption 's' atau 'sticker' </p>   
+                    </div>
+                </div>
+            </div>
+            <hr><hr>
+            <div class="row align-items-center">
+                
+                <div class="col-12 col-md-9">
+                    <div class="container">
+                        <h2 class="display-3">Edit Foto / Stiker</h2>
+                        <p>Edit Foto atau Stiker Kamu dengan command yang tersedia. Kamu bisa cek lebih lanjut di menu yang tersedia</p>   
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="card border rounded-1 border-700 h-100 features-items">
+                        <img src="img/bot3.jpg" alt="Edit Photo">
+                    </div>
+                </div>
+            </div>
+            <hr><hr>
+            <div class="row align-items-center">
+                <div class="col-12 col-md-3">
+                    <div class="card border rounded-1 border-700 h-100 features-items">
+                        <img src="img/bot4.jpg" alt="game">
+                    </div>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="container">
+                        <h2 class="display-3">Game</h2>
+                        <p>Tersedia game dalam bot ini. Hunting MIKO(Balance dalam bot), capai leaderboard top 50</p>   
+                    </div>
+                </div>
+            </div>
+            <hr><hr>
+            <div class="row align-items-center">
+                
+                <div class="col-12 col-md-9">
+                    <div class="container">
+                        <h2 class="display-3">RPG (WIP)</h2>
+                        <p>Bot dengan fitur RPG. <strong>Akan Tersedia banyak fitur RPG,</strong> Jadi tunggu lebih lanjut</p>   
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <div class="card border rounded-1 border-700 h-100 features-items">
+                        <img src="img/bot5.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <hr><hr>
+            <div class="row align-items-center">
+                
+                <div class="col-12 col-md-3">
+                    <div class="card border rounded-1 border-700 h-100 features-items">
+                        <img src="img/bot1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="container">
+                        <h2 class="display-3">DLL....</h2>
+                        <p>Cek fitur yang tersedia dengan <strong></strong>!menu</strong></p>   
+                    </div>
+                </div>
+            </div>
+            <hr><hr>
+        </div>
+    </section>
+    <!-- Price -->
+    <section id="pricelist">
+        <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+            <h1 class="display-4">Harga Sewa</h1>
+            <!-- <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p> -->
+          </div>
+            
+          <div class="container">
+            <div class="card-deck mb-3 text-center">
+              <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                  <h4 class="my-0 font-weight-normal">Sewa Only</h4>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title pricing-card-title">Rp. 10.000 <small class="text-muted">/ bln</small></h1>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>Memasukan Bot kedalam grup  &#10004;</li>
+                    <li class="text-muted">Fitur Tidak terbatas</li>
+                    <li class="text-muted">Balance(MIKO) Setiap Bulan</li>
+                    <li>Gc Official &#10004;</li>
+                  </ul>
+                  <button type="button" class="btn btn-lg btn-block btn-primary" data-bs-toggle="modal" data-bs-target="#sewa">Sewa Sekarang</button>
+                </div>
+              </div>
+              <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                  <h4 class="my-0 font-weight-normal">Sewa + Premium</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">Rp. 15.000 <small class="text-muted">/ bln</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>Memasukan Bot kedalam grup  &#10004;</li>
+                        <li>Fitur Tidak terbatas &#10004;</li>
+                        <li>Balance(MIKO) Setiap Bulan &#10004;</li>
+                        <li>Gc Official &#10004;</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-block btn-primary" data-bs-toggle="modal" data-bs-target="#sewa">Sewa Sekarang</button>
+                </div>
+                </div>
+              <div class="card mb-4 shadow-sm">
+                <div class="card-header">
+                  <h4 class="my-0 font-weight-normal">Premium Only</h4>
+                </div>
+                <div class="card-body">
+                  <h1 class="card-title pricing-card-title">Rp. 5.000 <small class="text-muted">/ mo</small></h1>
+                  <ul class="list-unstyled mt-3 mb-4">
+                    <li>Memasukan Bot kedalam grup &#10004;</li>
+                    <li class="text-muted">Fitur Tidak terbatas</li>
+                    <li class="text-muted">Balance(MIKO) Setiap Bulan </li>
+                    <li>Gc Official &#10004;</li>
+                  </ul>
+                  <button type="button" class="btn btn-lg btn-block btn-primary" data-bs-toggle="modal" data-bs-target="#sewa">Sewa Sekarang</button>
+                </div>
+              </div>
+            </div>
+    </section>
+    <!-- faq -->
+    <section class="py-5" id="faq">
+        
+<div class="faq_area section_padding_130" id="faq">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 col-lg-6">
+            <!-- Section Heading-->
+            <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                <h3><span>Frequently </span> Asked Questions(FAQ)</h3>
+                <p>Pertanyaan yang sering diajukan. Baca agar dapat mengetahui untuk menggunakan bot</p>
+                <div class="line"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <!-- FAQ Area-->
+        <div class="col-12 col-sm-10 col-lg-8">
+            <div class="accordion faq-accordian" id="faqAccordion">
+                <div class="card border-0 wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                    <div class="card-header" id="headingOne">
+                        <h6 class="mb-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Bagaimana cara menggunakan Bot?<span class="lni-chevron-up"></span></h6>
+                    </div>
+                    <div class="collapse" id="collapseOne" aria-labelledby="headingOne" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            <p>Ketikan <strong>!menu</strong> kepada bot, maka akan dikirimkan semua fitur fitur yang ada dalam bot</p>
+                            <p>Ketika ingin menggunakan salah satu command, ketikan <strong>!(command)</strong> tanpa tanda kurung</p>
+                            <p>Jika ingin melihat menu yang spesifik, tersedia listnya, ketikan <strong>!menu (jenis menu)</strong></p>   
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-0 wow fadeInUp" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInUp;">
+                    <div class="card-header" id="headingTwo">
+                        <h6 class="mb-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Bot Delay, Mati, Tidak Merespon?<span class="lni-chevron-up"></span></h6>
+                    </div>
+                    <div class="collapse" id="collapseTwo" aria-labelledby="headingTwo" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            <p>Jika Bot Tidak Respon, Mati, atau Delay, silahkan <strong>Tunggu</strong> dan ulangi kembali bila sudah merespon.</p>
+                            <p>Bila tidak merespon juga, ulangi, atau peringatkan <strong>!owner</strong> agar dinyalakan kembali</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-0 wow fadeInUp" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">
+                    <div class="card-header" id="headingThree">
+                        <h6 class="mb-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">Fitur Tidak bekerja?<span class="lni-chevron-up"></span></h6>
+                    </div>
+                    <div class="collapse" id="collapseThree" aria-labelledby="headingThree" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            <p>Gunakan fitur <strong>!report</strong> atau hubungi <strong>!owner</strong> dan laporkan masalahnya</p>
+                            <p>Setelah dilaporkan, akan diproses oleh owner utama <strong>Sebisa mungkin</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Support Button-->
+            <div class="support-button text-center d-flex align-items-center justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                <i class="lni-emoji-sad"></i>
+                <p class="mb-0 px-2">Tidak menemukan jawaban anda?</p>
+                <a href="contact.html">Hubungi Kami</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    </section>
+</section>
+    {% include "modal.html" %}
+{% block modal %}
+    
+{% endblock %}
+{% if hasLogin == true %}
+<script>
+    var name = {{ name| json_encode() | raw }}
+    Swal.fire({
+        title: 'Selamat Datang ' + name,
+        icon: 'success'
+    })
+</script>
+
+{% endif %}
+{% endblock content %}

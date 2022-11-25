@@ -1,0 +1,146 @@
+{% block modal %}
+{% include "modal_edit.html" %}
+{% block edit %}
+  
+{% endblock edit %}
+{% include "modal_insert.html" %}
+{% block insert %}
+  
+{% endblock insert %}
+{% include "modal_rent.html" %}
+{% block modal_rent %}
+
+{% endblock modal_rent %}
+
+
+<script>
+  // popover setup
+  
+  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+  const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+
+  // setup autofocus
+  const editModal = document.getElementById('edit')
+  const myInput = document.getElementById('edit_name')
+  const insertModal = document.getElementById('insert')
+  const insertInput = document.getElementById('insert_name')
+
+  editModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus()
+})
+  insertModal.addEventListener('shown.bs.modal',() =>{
+    insertInput.focus()
+  })
+  
+
+
+  // Setup modal edit
+  const edit = document.getElementById('edit')
+  // const editConfirm = document.getElementById('editConfirm')
+  //setup modal insert
+  const insert = document.getElementById('insert')
+  
+  //listener insert modal
+ insert.addEventListener('show.bs.modal',event=>{
+    
+    const button = event.relatedTarget
+    $(document).ready(function(e){
+      // console.log('asu');
+      {% include "modal_insert_js.html" %}
+      {% block insert_js %}
+        
+      {% endblock %}
+      console.log($('#insertForm').attr('data-bs-whatever'));
+      $('#insertForm').submit(function (e) { 
+        e.preventDefault();
+        console.log('asu');
+        $.ajax({
+          type: "POST",
+          url: "/insert",
+          data: {
+            name: $('#insert_name').val(),
+            number: $('#insert_number').val(),
+          },
+          success: function (response) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Data berhasil diedit',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            .then(function () {
+              console.log('asu');
+              $('#insert').modal('hide')
+              table.draw(false)
+            })
+          }
+        });
+      });
+    })
+  }) 
+  // add listener
+  edit.addEventListener('show.bs.modal', event => {
+    // Button that triggered the modal
+    console.log('asu')
+    const button = event.relatedTarget
+    const id = button.getAttribute('data-bs-whatever')    
+    console.log(id)
+    $(document).ready(function (e) {
+      // e.preventDefault();
+      $.ajax({
+        type: "GET",
+        url: '/' + id + '/select',
+        success: function (response) {
+          if (response) {
+            // console.log(response)
+            // Edit
+            {% include "modal_edit_js.html" %}
+            {% block edit_js %}
+              
+            {% endblock %}
+            // console.log('asu')    
+            $('#editForm').submit(function (e) { 
+              e.preventDefault();
+              console.log('asu')
+              // console.log(e);
+              $.ajax({
+                type: "POST",
+                url: "/edit",
+                data: {
+                  id: $('#id_bots').val(),
+                  edit_name: $('#edit_name').val(),
+                  edit_number: $('#edit_number').val()
+                },
+                success: function (response) {
+                  console.log(response)
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'Data berhasil diedit',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  .then(function () {
+                    $('#edit').modal('toggle')
+                    table.draw(false)
+
+                  })
+                }
+              });
+            });
+          } else {
+            Swal.fire(
+              'Error!',
+              'SQL has an error',
+              'error'
+            )
+          }
+        }
+      });
+    })
+  })
+  
+  function toggleModal(){
+    $('#viewMore').modal('toggle');
+  }
+</script>
+{% endblock modal %}
