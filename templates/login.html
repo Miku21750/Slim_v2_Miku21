@@ -38,7 +38,12 @@
                             <input type="text" id="nameF" name="firstName" class="form-control " required />
 
                             <label class="form-label" for="nameL">Last Name</label>
-                            <input type="text" id="name L" name="lastName" class="form-control " required />
+                            <input type="text" id="nameL" name="lastName" class="form-control " required />
+
+                            <label class="form-label" for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class=" form-control tel-input "  style="width: 352px;" required="required" name="phone" pattern="^[0-9]+$">
+                            {#<div class="invalid-feedback"></div>#}
+                        </br>
                             <label class="form-label" for="email">Email</label>
                             <input type="email" id="email" name="email" class="form-control" placeholder="example@example.com" required />
                             <label class="form-label" for="typePasswordX-2">Password</label>
@@ -57,15 +62,52 @@
         </div>
         
     </div>
-    
+    {% include "animation.html" %}
+            {% block animation %}{% endblock animation %}
     {% include "footer.html" %}
     {% block footer %}
 
     {% endblock %}
 </section>
 
+<script>
+    var input = document.querySelector("#phone");
+    var iti = window.intlTelInput(input, {
+      utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@16.0.3/build/js/utils.js",
+    });
+    
+    // store the instance variable so we can access it in the console e.g. window.iti.getNumber()
+    window.iti = iti;
+    
+    
+    function checkPhoneValidation(element, isValidNumber)
+    {
+    
+      let invFeedbackDiv = element.parents('.form-group').find('.invalid-feedback');
+      input = element.get(0);
+    
+          if(isValidNumber) {
+            //need to set this first as otherwise input validity is falsely linking to custom error
+            input.setCustomValidity('');
+        }
+      
+      if(isValidNumber && input.validity.valid) {
+        input.setCustomValidity('');
+        invFeedbackDiv.hide();
+      } else {
+        invFeedbackDiv.html('Invalid phone number');
+        input.setCustomValidity('invalid');
+    
+        if($('form').hasClass('was-validated')) {
+          invFeedbackDiv.show();
+        }
+      } 
+      
+    }
+</script>
 {% if notValidate == true %}
 <script>
+    
     Swal.fire({
         icon: 'error',
         title: 'Not Validate',

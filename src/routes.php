@@ -76,6 +76,12 @@ return function (App $app) {
     $app->get('/data', function (Request $request, Response $response, array $args) use ($container) {
         return IndexController::data($container,$request,$response,$args);
     })->add(new Auth());
+    $app->get('/contact', function (Request $request, Response $response, array $args) use ($container) {
+        return $container->view->render($response, 'contact.html',$args);
+    });
+    $app->get('/profile', function (Request $request, Response $response, array $args) use ($container) {
+        return $container->view->render($response, 'profile.html',$args);
+    });
     $app->get('/', function (Request $request, Response $response, array $args) use ($container) {
         $hasRegistered  = isset($_SESSION['hasLogin']);
         unset($_SESSION['hasLogin']);

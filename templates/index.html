@@ -6,7 +6,7 @@
     <header class="text-center bg-img text-white py-5 mt-5"  id="indexHead">
         <!-- <h1 class="display-1 font-weight-bolder head-anim">Miku21</h1> -->
         <h1 class="font-weight-bolder head-anim">Selamat datang {{name}} di Miku21Bot</h1>
-        <p class="text-head"><strong> Bot multifungsi yang berbeda dari sebelumnya</strong></p>
+        <p class="lead" style:"text-shadow: 2px 2px #ff0000;"><strong> Bot multifungsi yang berbeda dari sebelumnya</strong></p>
     </header>
     <!-- section judul -->
     <section class="py-5">
@@ -236,7 +236,8 @@
             </div>
         </div>
     </div>
-</div>
+</div>{% include "animation.html" %}
+{% block animation %}{% endblock animation %}
 </div>
     </section>
 </section>
@@ -244,7 +245,19 @@
 {% block modal %}
     
 {% endblock %}
-{% if hasLogin == true %}
+{{notNumber}}
+{% if notNumber is not null %}
+<script>
+    var name = {{ name| json_encode() | raw }}
+    Swal.fire({
+        title: 'Selamat Datang ' + name,
+        text: 'Kamu belum terdaftar di user bot, ayo sewa sekarang',
+        icon: 'success',
+        footer: '<button type="button" class="btn btn-lg btn-block btn-primary" onclick="swal.close();" data-bs-toggle="modal" data-bs-target="#sewa">Sewa Sekarang</button>'
+    })
+</script>
+
+{% elseif hasLogin == true %}
 <script>
     var name = {{ name| json_encode() | raw }}
     Swal.fire({

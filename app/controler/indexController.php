@@ -17,11 +17,13 @@
             }
         public static function index($c, $req, $rsp, $args){
             $name = isset($_SESSION['name'])?$_SESSION['name']:null;
+            $notNumber = isset($_SESSION['notNumber'])?true:null;
             // return var_dump($_SESSION);
             if($args['hasLogin'] == true){
                 $c->view->render($rsp, 'index.html',[
                     'hasLogin'=>true,
-                    'name'=>$name
+                    'name'=>$name,
+                    'notNumber'=>$notNumber
                 ]);
             }else{
                 $c->view->render($rsp, 'index.html',[
@@ -54,7 +56,11 @@
             // get data
             $data_reg = $args['data'];
             // hash password
+            // return var_dump($data_reg);
             $pass = md5($data_reg['pass']);
+            $no_split = preg_replace('/^0/', '', $data_reg['phone']);
+            // return var_dump($no_split); 
+            $number = '62'.$no_split.'@s.whatsapp.net';
             // insert new user
             $dAwal = $c->db->select('tbl_users',"email",[
                 "email"=>$data_reg['email']
@@ -66,18 +72,14 @@
                     "email"=>$data_reg['email'],
                     "first_name"=>$data_reg['firstName'],
                     "last_name"=>$data_reg['lastName'],
+                    "number"=>$number,
                     "password_user"=>$pass
                 ]);
-                // $inserted_id = $c->db->id();
-                // return var_dump($inserted_id);
-                $mode = $_SESSION['mode'] = "login";
+                
                 $hasRegistered = $_SESSION['hasRegistered'] = true;
+                $mode = $_SESSION['mode'] = "login";
+
                 return $rsp->withRedirect('/login');
-                // $c->view->render($rsp, 'login.html',[
-                //     'mode'=>"login",
-                //     "hasRegistered" => true,
-                //     "idReg" => $inserted_id
-                // ]);
             // if exist
             }else{
                 // go back
@@ -114,9 +116,21 @@
                     ]);
                 // if exist in user database
                 }else{
+                    // if add in number bot list, then can use API
+                    $dSecVerif = $c->db->select('tbl_users',[
+                        '[><]tbl_user_bots'=>'number'
+                    ],'*',[
+                        'tbl_user_bots.number'=>$d[0]['number']
+                    ]);
+                    //if not exist
+                    if($dSecVerif == null){
+                        $_SESSION['notNumber'] = true;
+                    }
+                    //if exist
+                    else{
+                    };
+
                     // go into index
-                    // session_start();
-                    // return var_dump($d[0]['first_name']);
                     $_SESSION['hasLogin'] = true;
                     $name = $_SESSION['name'] = $d[0]['first_name'];
 

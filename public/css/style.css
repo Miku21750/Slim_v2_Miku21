@@ -1,4 +1,19 @@
-
+  
+.intl-tel-input {
+  display: table-cell;
+}
+.intl-tel-input .selected-flag {
+  z-index: 4;
+}
+.intl-tel-input .country-list {
+  z-index: 5;
+}
+.input-group .intl-tel-input .form-control {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 0;
+}
 
 .gd-nav-anim {
   background: linear-gradient(258deg, #99f5f6, #5e9cb2, #275a79, #55606e, #242b33, #4e4e50, #c86c7c);
