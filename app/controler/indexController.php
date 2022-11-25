@@ -1,5 +1,6 @@
 <?php
     namespace App\controler;
+    use Medoo\Medoo;
     class IndexController{
         // Index
         public static function data($c, $req, $rsp, $args){
@@ -145,7 +146,7 @@
             }
             
         }
-        public static function select($c, $req, $rsp, $args){
+        public static function selectT1($c, $req, $rsp, $args){
             $data = $c->db->select("tbl_user_bots",'*');
             $columns = array(
                 0=>'index',
@@ -180,11 +181,100 @@
                     $each['Fullname'] = $d['name'];
                     $each['Number'] = $d['number'];
                     $each['Action'] = 
-                    '<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit" data-bs-whatever="'.$d['id_bots'].'">
+                    '<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit" data-bs-whatever="'.$d['id_bots'].'"><i class="bi bi-pencil-square"></i>&nbsp
                     Edit
                 </button>
-                <button class="btn btn-danger delete_items" data-bs-whatever="'.$d['id_bots'].'" id="delete" >Delete Data</button>'
+                <button class="btn btn-danger delete_items" data-bs-whatever="'.$d['id_bots'].'" id="delete" ><i class="bi bi-trash"></i>&nbsp;Delete</button>'
                 ;
+                    $data[] = $each;
+                    $index++;
+                }
+            }
+
+            $json_data = array(
+                "draw"=>intval($req->getParam('draw')),
+                "recordsTotal"=>intval($totaldata),
+                "recordsFiltered"=>intval($totalfilter),
+                "data"=>$data
+            );
+            echo json_encode($json_data);
+
+        // // return var_
+        }
+        public static function selectT2($c, $req, $rsp, $args){
+            $data = $c->db->select("tbl_users",[
+                '[>]tbl_user_bots'=>'number'
+            ],[
+                'id_users',
+                'first_name',
+                'last_name',
+                'number',
+                'email',
+                'password_user',
+                'isBots' => Medoo::raw('CASE
+                WHEN tbl_users.number = tbl_user_bots.number
+                   THEN 1
+                   ELSE 0
+           END')
+            ]);
+            $columns = array(
+                0=>'index',
+            );
+
+            $totalfilter = $totaldata = count($data);
+            $limit = $req->getParam('length');
+            $start = $req->getParam('start');
+            $order = $req->getParam('order');
+            $order = $columns[$order[0]['column']];
+            $dir = $req->getParam('order');
+            $dir = $dir[0]['dir'];
+
+            $condition = [
+                "LIMIT" => [$start, $limit],
+            ];
+            if(!empty($req->getParam('search')['value'])){
+                $search = $req->getParam('search')['value'];
+                $condition['OR'] =[
+                    'tbl_users.first_name[~]'=> '%'.$search.'%',
+                    'tbl_users.last_name[~]'=> '%'.$search.'%',
+                    'tbl_users.number[~]'=> '%'.$search.'%',
+                    'tbl_users.email[~]'=> '%'.$search.'%',
+                ];
+            }
+
+            $showData = $c->db->select('tbl_users',[
+                '[>]tbl_user_bots'=>'number'
+            ],[
+                'id_users',
+                'first_name',
+                'last_name',
+                'number',
+                'email',
+                'password_user',
+                'isBots' => Medoo::raw('CASE
+                WHEN tbl_users.number = tbl_user_bots.number
+                   THEN 1
+                   ELSE 0
+           END')
+            ],$condition);
+            // return var_dump($showData)
+;            $data = array();
+
+            if(!empty($showData)){
+                $index = $req->getParam('start') + 1;
+                foreach ($showData as $d){
+                    $each['#'] = $index.'.';
+                    $each['First_Name'] = $d['first_name'];
+                    $each['Last_Name'] = $d['last_name'];
+                    $each['Number'] = $d['number'];
+                    $each['Email'] = $d['email'];
+                    $each['isBots'] = $d['isBots'];
+                //     $each['Action'] = 
+                //     '<button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit" data-bs-whatever="'.$d['id_users'].'">
+                //     Edit
+                // </button>
+                // <button class="btn btn-danger delete_items" data-bs-whatever="'.$d['id_users'].'" id="delete" >Delete Data</button>'
+                // ;
                     $data[] = $each;
                     $index++;
                 }

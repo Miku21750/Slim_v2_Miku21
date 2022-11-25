@@ -30,9 +30,11 @@
                     <a href="/contact" class="nav-link">Contact</a>
                 </li>
                 {# Throw API if user register, throw Data if admin #}
+                {% if name is not null %}
                 <li class="nav-item">
                     <a href="/data" class="nav-link">Data</a>
                 </li>
+                {% endif %}
             </ul>
             <ul class="navbar-nav my-auto">
                 

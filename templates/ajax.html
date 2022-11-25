@@ -1,8 +1,11 @@
 {% block ajax %}
 <script>
     $(document).ready(function(){
-        TableShow = function(){
-            table = $('#demo').on('preXhr.dt', function(e, settings, data){
+        const triggerEl = document.querySelector('#demo')
+        console.log(triggerEl)
+        //bootstrap.Tab.getInstance(triggerEl).show();
+        Table1Show = function(){
+            table1 = $('#demo').on('preXhr.dt', function(e, settings, data){
                 // Loading
             })
             .on('draw.dt', function(){
@@ -20,7 +23,7 @@
                 "serverSide": true,
                 "serverMethod": "GET",
                 "ajax":{
-                    'url':"/select",
+                    'url':"/selectT1",
                     'dataType': 'json',
                     'type': 'GET'
                 },
@@ -32,7 +35,45 @@
                 ]
             })
         }
-        TableShow();
+        Table1Show();
+        Table2Show = function(){
+            table2 = $('#regTable').on('preXhr.dt', function(e, settings, data){
+                // Loading
+            })
+            .on('draw.dt', function(){
+                // Finish reload 
+            })
+            .DataTable({
+                "columnDefs":[
+                {width:"1%","targets":0, className:"text-end", "orderAble":false},
+                {width:"15%","targets":0, className:"text-end", "orderAble":false},
+                {width:"15%","targets":0, className:"text-end", "orderAble":false},
+                {width:"30%","targets":0, className:"text-end", "orderAble":false},
+                {width:"30%","targets":0, className:"text-end", "orderAble":false},
+                {width:"10%","targets":0, className:"text-end", "orderAble":false},
+                //{width:"20%","targets":0, className:"text-end", "orderAble":false},
+                ],
+                "pageLength": 5,
+                "processing": true,
+                "serverSide": true,
+                "serverMethod": "GET",
+                "ajax":{
+                    'url':"/selectT2",
+                    'dataType': 'json',
+                    'type': 'GET'
+                },
+                'columns':[
+                    {'data' : '#'},
+                    {'data' : 'First_Name'},
+                    {'data' : 'Last_Name'},
+                    {'data' : 'Number'},
+                    {'data' : 'Email'},
+                    {'data' : 'isBots'},
+                    //{'data' : 'Action'},
+                ]
+            })
+        }
+        Table2Show();
     })
 </script>
 {% endblock ajax %}

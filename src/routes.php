@@ -69,8 +69,12 @@ return function (App $app) {
 
         return $response->withJson($search);
     })->add(new Auth());
-    $app->get('/select', function (Request $request, Response $response, array $args) use ($container) {
-        return IndexController::select($container,$request,$response,$args);
+    $app->get('/selectT1', function (Request $request, Response $response, array $args) use ($container) {
+        return IndexController::selectT1($container,$request,$response,$args);
+        
+    });
+    $app->get('/selectT2', function (Request $request, Response $response, array $args) use ($container) {
+        return IndexController::selectT2($container,$request,$response,$args);
         
     });
     $app->get('/data', function (Request $request, Response $response, array $args) use ($container) {
